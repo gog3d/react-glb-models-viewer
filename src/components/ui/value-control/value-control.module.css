@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-dirextion: row;
+  align-items: center;
+  justify-content: space-between;
+/*  border: solid grey 1px;*/
+/*  background-color: grey;*/
+}
+
+.button {
+  border: solid black 1px;
+  width: 30px;
+  height: auto;
+  background-color: grey;
+  color: white;
+  border-radius: 4px;
+}
+
+.button_container {
+  display: flex;
+  flex-direction: row;
+  width: 70px;
+}
+
+.name {
+  width: 100%;
+}
+
+.value {
+  width: 80px;
+}

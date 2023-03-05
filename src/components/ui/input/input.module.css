@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+  flex-dirextion: column;
+  align-items: center;
+  justify-content: center;
+/*  border: solid red 1px;
+  background-color: grey;*/
+}
+
+.canvas_container{
+  width: 200px;
+  height: 200px;
+  border: solid black 1px;
+}
