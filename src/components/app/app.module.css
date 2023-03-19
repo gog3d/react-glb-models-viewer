@@ -17,3 +17,11 @@
 .control_container {
   width: 300px;
 }
+
+.canvas {
+  border: solid black 1px;
+  width: 600px;
+  height: 300px;
+  overflow: hidden;
+  background-color: red;
+}

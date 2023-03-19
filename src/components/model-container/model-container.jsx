@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useThree, useFrame} from '@react-three/fiber';
 
-const ModelContainer = ({rotate, children, scale}) => {
+const ModelContainer = ({rotate, children}) => {
   const ref = useRef();
   useFrame((_, delta) => {
     if(rotate) {
