@@ -13,7 +13,7 @@ const PaperCupRegroup = (props) => {
   const {positionCamera} = props;
   const {imgUrl} = props;
   
-  console.log(imgUrl);
+//  console.log(imgUrl);
 //  const { nodes, materials } = useLoader(GLTFLoader, './models/starbucks_paper_cup.glb');
 //  const gltf = useLoader(GLTFLoader, './models/starbucks_paper_cup.glb');
 
@@ -24,8 +24,8 @@ const PaperCupRegroup = (props) => {
   const material = new THREE.MeshBasicMaterial( { map: texture } );//
 
 
-  const { nodes, materials } = useLoader(GLTFLoader, './models/starbucks_paper_cup.glb');
-  const gltf = useLoader(GLTFLoader, './models/CUP.glb');
+  const { nodes, materials } = useLoader(GLTFLoader, './models/cup.glb');
+  const gltf = useLoader(GLTFLoader, './models/cup.glb');
 
   const {camera} = useThree();
 
@@ -48,26 +48,24 @@ const PaperCupRegroup = (props) => {
       }
     }
   }
+  console.log(models);
 
-  return (
-    <group {...props} camera={cameraPos}>
-      {
-/*        <primitive object={gltf.scene} />
-
-        models.map(( model, key) =>
-          <mesh key={key} geometry={nodes[model.node].geometry} material={materials[model.material]}/>
-        )*/
-          <mesh 
+//        <primitive object={gltf.scene} />
+  /* 
+         <mesh 
             geometry={nodes[models[0].node].geometry} 
             material={material}
           />
-/*        nodes.traverse(( node, key) =>
-          <mesh key={key} geometry={node.geometry} material={materials[node.material]}/>
+  */
+
+  return (
+    <group {...props} camera={cameraPos}>
+      {/*
+        models.map(( model, key) =>
+          <mesh key={key} geometry={nodes[model.node].geometry} material={materials[model.material]}/>
         )*/
-
-
       }
-
+          <mesh geometry={nodes[models[4].node].geometry} material={materials[models[4].mterial]}/>
     </group>
   )
 }
