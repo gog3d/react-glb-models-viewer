@@ -32,9 +32,9 @@ const ConstructorModels = (props) => {
 
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
-  const [positionZ, setPositionZ] = useState(0);
+  const [positionZ, setPositionZ] = useState(0.9);
 
-  const [rotationX, setRotationX] = useState(0);
+  const [rotationX, setRotationX] = useState(-0.5);
   const [rotationY, setRotationY] = useState(0);
   const [rotationZ, setRotationZ] = useState(11);
 
@@ -109,7 +109,7 @@ const ConstructorModels = (props) => {
           <primitive object={new THREE.AxesHelper(10)} />
           <ModelContainer rotate={rotate&&mouseUp} >
 {/*            <Box position={position} rotation={rotation} scale={scale}/*/}
-            <PaperCupRegroup 
+            <PaperCup 
               positionCamera={positionCamera} 
               position={position} 
               rotation={rotation}

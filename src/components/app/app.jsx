@@ -16,7 +16,7 @@ import pic from  '../../media/lada.png';
 const App = () => {
   return (
     <div className={styles.app}>
-      <CanvasContainer/>
+      <CanvasContainer />
     </div>
   );
 };

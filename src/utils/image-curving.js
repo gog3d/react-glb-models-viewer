@@ -77,18 +77,21 @@ export const  warpVertically = (
   img
   ) => {
 
+  const widthRat = img.width / image_to_warp.width;
+  const heightRat = img.height / image_to_warp.height;
+
   const image_width  = image_to_warp.width;
   const image_height = image_to_warp.height;
   const warp_percentage = parseFloat(warp_percentage_input, 10);
 // for fun purposes and nicer controls
 // I chose to determine the offset by applying a percentage value to the image height
-  const warp_y_offset = warp_percentage * image_height;
- 
-//  warp_canvas.width  = image_width;
-//  warp_canvas.height = image_height + Math.ceil(warp_y_offset * 2); 
+//  const warp_y_offset = warp_percentage * image_height;
+  const warp_y_offset = warp_percentage * image_height*0.2;
+  //warp_canvas.width  = image_width;
+  //warp_canvas.height = image_height + Math.ceil(warp_y_offset * 2); 
 
-  warp_canvas.width  = 300;
-  warp_canvas.height = 300; 
+  warp_canvas.width  = img.width;
+  warp_canvas.height = img.height; 
 
   let warp_context = warp_canvas.getContext('2d');
 
@@ -118,8 +121,8 @@ export const  warpVertically = (
 
   warp_context.clearRect(0, 0, warp_canvas.width, warp_canvas.height);
 
-  warp_context.drawImage(img, 0, 0, 100, 100);
-  warp_context.globalCompositeOperation="source-in";
+  //warp_context.drawImage(img, 0, 0, 100, 100);
+  //warp_context.globalCompositeOperation="source-in";
 
 
   for (let x=0; x < image_width; x++ ) {
@@ -127,33 +130,11 @@ export const  warpVertically = (
     // clip 1 pixel wide slice from the image
     x, 0, 1, image_height + warp_y_offset,
     // draw that slice with a y-offset
-    x, warp_y_offset + offset_y_points[x], 1, image_height + warp_y_offset
+    x*widthRat, warp_y_offset + offset_y_points[x], 1*widthRat, image_height*heightRat + warp_y_offset
+//    x, warp_y_offset + offset_y_points[x], 1, image_height + warp_y_offset
+//    x*widthRat, offset_y_points[x], 1*widthRat, image_height*heightRat
     );
   }
-
-
-
+  warp_context.globalCompositeOperation = "source-over";
+  warp_context.drawImage(img, 0, 0);
 }
-
-/*
-	function warpImage () {
-
-		var image_to_warp = new Image();
-
-		image_to_warp.onload = function () {
-
-			var warp_orientation = document.querySelector('input[name="warp_orientation"]:checked').value,
-				invert_curve = document.getElementById('invert_curve').checked;
-			if (warp_orientation === 'horizontal') {
-				warpHorizontally(image_to_warp, invert_curve);
-			} else {
-				warpVertically(image_to_warp, invert_curve);
-			}
-			
-			warped_image.src = warp_canvas.toDataURL();	
-		}
-
-		image_to_warp.src = 'test_image.jpg';
-	
-}
-*/
