@@ -38,12 +38,20 @@ const wrapperColors = [
   },
 ];
 
-];
-
 export const CustomizationProvider = (props) => {
   const [lid, setLid] = useState(true);
-  const [lidColor, setLidColor] = useState(lidColors[0]);
-  const [cupColor, setCupColor] = useState(cupColors[0]);
+  const [lidColor, setLidColor] = useState(wrapperColors[0]);
+  const [lidTexture, setLidTexture] = useState(null);
+
+  const [cupColor, setCupColor] = useState(wrapperColors[0]);
+  const [cupTexture, setCupTexture] = useState(null);
+
+  const [wrapper, setWrapper] = useState({
+    main: {image: null, visible: true},
+    front: {image: null, visible: true},
+    back: {image: null, visible: true},
+  });
+
   return (
     <CustomizationContext.Provider
       value={{
@@ -51,10 +59,15 @@ export const CustomizationProvider = (props) => {
         setLid,
         lidColor,
         setLidColor,
+        lidTexture,
+        setLidTexture,
         cupColor,
         setCupColor,
-        cupColors,
-        lidColors
+        cupTexture,
+        setCupTexture,
+        wrapperColors,
+        wrapper,
+        setWrapper,
       }}
       >
       {props.children}
