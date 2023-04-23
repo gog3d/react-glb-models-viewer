@@ -39,14 +39,15 @@ const CupWrapper = ({dimensions}) => {
   const backTexture = useTexture(back.crop ? back.crop : defaultTexture);
   return (
     <>
-      <Cylinder 
+{/*}      <Cylinder 
         args={[tR, bR, h, 50, 50, false, 0, 2*Math.PI]} 
         visible={true}
       >
         <meshStandardMaterial 
-          color={cup.color ? cup.color : 'white'}
+          color={main.color ? main.color : 'red'}
         />
       </Cylinder>
+*/}
       <Cylinder 
         args={[tR, bR, h, 50, 50, true, 0, 2*Math.PI]} 
         visible={main.visible}

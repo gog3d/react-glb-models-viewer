@@ -96,7 +96,7 @@ const ConstructorPage = () => {
 {        <Canvas>
           <color attach='background' args={['#101010']}/>
           <Experience>
-            <CupWrapper dimensions={[0.1, 0.1, 10]}/>
+            <CupWrapper dimensions={[4, 2.6, 11.2]}/>
             <Cup />
           </Experience>
         </Canvas>

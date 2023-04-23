@@ -33,7 +33,7 @@ const Experience = ({ children }) => {
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 1}
       />
-      {<mesh  rotation={[-Math.PI / 2, 0, 0]} position-y={-5.3}>
+      {<mesh  rotation={[-Math.PI / 2, 0, 0]} position-y={-5.9}>
         <planeGeometry args={[170, 170]} />
         <MeshReflectorMaterial
           blur={[300, 100]}

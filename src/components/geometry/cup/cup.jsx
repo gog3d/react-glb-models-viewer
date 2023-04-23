@@ -15,7 +15,7 @@ import { useCustomization } from '../../../context/customization';
 const Cup = (props) => {
 
   const {
-    cup,
+    cup
   } = useCustomization();
 
   const paperTextureProps = useTexture({
@@ -39,8 +39,8 @@ const Cup = (props) => {
   const { nodes, materials } = useGLTF('/models/cup_1.glb')
   
   return (
-    <group {...props} dispose={null} position-y={0.1}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={1} >
+    <group {...props} dispose={null} position-y={-5.5}>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.1} >
         <mesh geometry={nodes.coffee_with_sugar_1.geometry} dispose={null}>
         <meshStandardMaterial 
           map={paperTextureProps.normalMap}
@@ -50,6 +50,7 @@ const Cup = (props) => {
         <mesh geometry={nodes.coffee_with_sugar_2.geometry} visible={true}>
           <meshStandardMaterial 
             roughnessMap={plasticTextureProps.roughnessMap}
+            color={'black'}
           />
         </mesh>
       </group>
