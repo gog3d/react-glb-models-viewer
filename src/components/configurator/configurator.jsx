@@ -1,7 +1,12 @@
 import { useCustomization } from "../../context/customization";
 import styles from './configurator.module.css';
 import { useState } from 'react';
- 
+import DropDown from '../ui/dropdown/dropdown';
+import DropDownMidle from '../ui/dropdown-midle/dropdown-midle';
+import DropDownSmall from '../ui/dropdown-small/dropdown-small';
+import ColorsPalette from '../ui/colors-palette/colors-palette';
+import SelectionSwitch from '../ui/selection-switch/selection-switch';
+import ImageCropper from '../ui/image-cropper/image-cropper';
 
 const Configurator = () => {
   const {
@@ -16,66 +21,58 @@ const Configurator = () => {
     cupTexture,
     setCupTexture,
     wrapperColors,
-    wrapper,
-    setWrapper,
     front,
-    setFront
+    setFront,
+    back,
+    setBack,
+    main,
+    setMain,
   } = useCustomization();
-
-  const [frontMenu, setFrontMenu] = useState(false);
-
-//console.log(wrapperColors)
 
   return (
     <div className={styles['configurator']}>
-
-      <div className={styles['configurator__section']}>
-        <div className={styles.item}
-          onClick={()=>{return frontMenu ? setFrontMenu(false) : setFrontMenu(true) }}
-        >
-          <div className={styles['configurator__section_title']}>
-            Передняя сторона
-          </div>
-        </div>
-        { frontMenu ? (
-          <div className={styles['configurator__section__values']}>
-            <div className={`${styles['item']} ${front.visible ? styles['item__active'] : ''}`} 
-              onClick={()=>setFront({...front, visible: true})}
-            >
-              <div className={`${styles['item__label']}`}>
-                Показать
-              </div>
-            </div>
-            <div className={`${styles['item']} ${front.visible ? '' : styles['item__active']}`} 
-              onClick={()=>setFront({...front, visible: false})}
-            >
-              <div className={styles['item__label']}>
-                Скрыть
-              </div>
-            </div>
-          </div>) : ''
-      }
-      </div>
-      { frontMenu ? (
-      <div className={styles['configurator__section']}>
-        <div className={styles['configurator__section_title']}>
-          Цвет
-        </div>
-        <div className={styles['configurator__section__values']}>
-        { wrapperColors.map((item, index) => (
-          <div className={`${styles['item']} ${item.color === front.color ? styles['item__active'] : ''}`}
-            onClick={()=>setFront({...front, color: item.color})}
-            key={index}
-          >
-            <div className={styles['item__dot']} style={{
-              backgroundColor: item.color,
-            }}/>
-            {/*<div className='item__label'>{item.name}</div>*/}
-          </div>
-        ))}
-        </div>
-      </div>) : ''
-      }
+      <ImageCropper />
+      <DropDown title={'Cup'}>
+        <DropDownMidle title={'Main'}>
+          <SelectionSwitch 
+            surface={main}
+            setSurface={setMain}
+          />
+          <DropDownSmall title={'Цвет'}>
+            <ColorsPalette 
+              colors={wrapperColors}
+              setSurface={setMain}
+              surface={main}
+            />
+          </DropDownSmall>
+        </DropDownMidle>
+        <DropDownMidle title={'Front'}>
+          <SelectionSwitch 
+            surface={front}
+            setSurface={setFront}
+          />
+          <DropDownSmall title={'Цвет'}>
+            <ColorsPalette 
+              colors={wrapperColors}
+              setSurface={setFront}
+              surface={front}
+            />
+          </DropDownSmall>
+        </DropDownMidle>
+        <DropDownMidle title={'Back'}>
+          <SelectionSwitch 
+            surface={back}
+            setSurface={setBack}
+          />
+          <DropDownSmall title={'Цвет'}>
+            <ColorsPalette 
+              colors={wrapperColors}
+              setSurface={setBack}
+              surface={back}
+            />
+          </DropDownSmall>
+        </DropDownMidle>
+      </DropDown>
     </div>
   );
 };

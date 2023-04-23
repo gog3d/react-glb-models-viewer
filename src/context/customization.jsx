@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import wrapperColors from '../data/colors.json';
-
+import defaultTexture from '../media/default.png';
+import pic from '../media/1.jpg';
 const CustomizationContext = createContext();
 
 export const CustomizationProvider = (props) => {
@@ -8,17 +9,22 @@ export const CustomizationProvider = (props) => {
   const [lidColor, setLidColor] = useState(wrapperColors[0]);
   const [lidTexture, setLidTexture] = useState(null);
 
-  const [cupColor, setCupColor] = useState(wrapperColors[0]);
-  const [cupTexture, setCupTexture] = useState(null);
+  const [cup, setCup] = useState(
+    {image: null, color: 'white', visible: true, crope: null}
+  );
+//  const [cupTexture, setCupTexture] = useState(null);
+  const [main, setMain] = useState(
+    {image: null, color: 'white', visible: false, crope: null}
+  );
   const [front, setFront] = useState(
-    {image: null, color: null, visible: true}
+    {image: null, color: 'white', visible: false, crope: null}
+  );
+  const [back, setBack] = useState(
+    {image: null, color: 'white', visible: false, crope: null}
   );
 
-  const [wrapper, setWrapper] = useState({
-    main: {image: null, color: null, visible: true},
-    front: {image: null, color: null, visible: true},
-    back: {image: null, color: null, visible: true},
-  });
+  const [backgroundCrop, setBackgroundCrop] = useState(null);
+  const [logoCrop, setLogoCrop] = useState(null);
 
   return (
     <CustomizationContext.Provider
@@ -29,15 +35,19 @@ export const CustomizationProvider = (props) => {
         setLidColor,
         lidTexture,
         setLidTexture,
-        cupColor,
-        setCupColor,
-        cupTexture,
-        setCupTexture,
+        cup,
+        setCup,
         wrapperColors,
-        wrapper,
-        setWrapper,
         front,
-        setFront
+        setFront,
+        back,
+        setBack,
+        main,
+        setMain,
+        backgroundCrop,
+        setBackgroundCrop,
+        logoCrop,
+        setLogoCrop
       }}
       >
       {props.children}

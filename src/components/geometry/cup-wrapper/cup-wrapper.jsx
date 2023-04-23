@@ -1,5 +1,8 @@
-import { Cylinder, meshStandardMaterial } from '@react-three/drei';
+import { Cylinder, meshStandardMaterial, useTexture } from '@react-three/drei';
 import { useCustomization } from '../../../context/customization';
+import * as THREE from 'three';
+
+import defaultTexture from '../../../media/default.png';
 
 const CupWrapper = ({dimensions}) => {
 
@@ -18,17 +21,22 @@ const CupWrapper = ({dimensions}) => {
     setLidColor,
     lidTexture,
     setLidTexture,
-    cupColor,
-    setCupColor,
+    cup,
+    setCup,
     cupTexture,
     setCupTexture,
     wrapperColors,
-    wrapper,
-    setWrapper,
     front,
-    setFront
+    setFront,
+    back,
+    setBack,
+    main,
+    setMain
   } = useCustomization();
 
+  const mainTexture = useTexture(main.crop ? main.crop : defaultTexture);
+  const frontTexture = useTexture(front.crop ? front.crop : defaultTexture);
+  const backTexture = useTexture(back.crop ? back.crop : defaultTexture);
   return (
     <>
       <Cylinder 
@@ -36,19 +44,18 @@ const CupWrapper = ({dimensions}) => {
         visible={true}
       >
         <meshStandardMaterial 
-          color={'yellow'}
-          transparent
-          opacity={1}
+          color={cup.color ? cup.color : 'white'}
         />
       </Cylinder>
       <Cylinder 
         args={[tR, bR, h, 50, 50, true, 0, 2*Math.PI]} 
-        visible={wrapper.main.visible}
+        visible={main.visible}
       >
         <meshStandardMaterial 
-          color={'blue'}
+          color={main.color ? main.color : 'blue'}
+          map={mainTexture}
           transparent
-          opacity={opacity.background}
+          opasity={0.8}
         />
       </Cylinder>
       <Cylinder 
@@ -57,18 +64,20 @@ const CupWrapper = ({dimensions}) => {
       >
         <meshStandardMaterial 
           color={front.color ? front.color : 'red'}
+          map={frontTexture}
           transparent
-          opacity={front.color ? 1 : 0.1}
+          opasity={0.8}
         />
       </Cylinder>
       <Cylinder 
         args={[tR, bR, h, 50, 50, true, 0, 1*Math.PI]} 
-        visible={wrapper.back.visible}
+        visible={back.visible}
       >
         <meshStandardMaterial 
-          color={'green'}
+          color={back.color ? back.color : 'green'}
+          map={backTexture}
           transparent
-          opacity={opacity.back}
+          opasity={0.8}
         />
       </Cylinder>
     </>
