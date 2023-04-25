@@ -13,8 +13,10 @@ const Experience = ({ children }) => {
   return (
     <>
      { <Stage
+        position={[-1.25, 10, 0]}
         intensity={1.5}
         environment="city"
+        center={{position: [-1.25, 0, 10]}}
         shadows={{
           type: "accumulative",
           color: "#d9afd9",
@@ -33,7 +35,7 @@ const Experience = ({ children }) => {
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 1}
       />
-      {<mesh  rotation={[-Math.PI / 2, 0, 0]} position-y={-5.9}>
+      {/*<mesh  rotation={[-Math.PI / 2, 0, 0]} position-y={-5.9}>
         <planeGeometry args={[170, 170]} />
         <MeshReflectorMaterial
           blur={[300, 100]}
@@ -47,7 +49,7 @@ const Experience = ({ children }) => {
           color="#101010"
           metalness={0.5}
         />
-      </mesh> }
+      </mesh>*/ }
 
     </>
   );

@@ -38,16 +38,7 @@ const CupWrapper = ({dimensions}) => {
   const frontTexture = useTexture(front.crop ? front.crop : defaultTexture);
   const backTexture = useTexture(back.crop ? back.crop : defaultTexture);
   return (
-    <>
-{/*}      <Cylinder 
-        args={[tR, bR, h, 50, 50, false, 0, 2*Math.PI]} 
-        visible={true}
-      >
-        <meshStandardMaterial 
-          color={main.color ? main.color : 'red'}
-        />
-      </Cylinder>
-*/}
+    <group rotation={[0, Math.PI, 0]}>
       <Cylinder 
         args={[tR, bR, h, 50, 50, true, 0, 2*Math.PI]} 
         visible={main.visible}
@@ -81,7 +72,7 @@ const CupWrapper = ({dimensions}) => {
           opasity={0.8}
         />
       </Cylinder>
-    </>
+    </group>
   );
 };
 

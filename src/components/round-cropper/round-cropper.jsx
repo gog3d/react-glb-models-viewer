@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
-import styles from './rectangle-cropper.module.css';
+import styles from './round-cropper.module.css';
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
 import src from '../../media/1.jpg';
 
-const RectangleCropper= (props) => {
+const RoundCropper= (props) => {
 
   const {
     ratio,
@@ -27,10 +27,9 @@ const RectangleCropper= (props) => {
       <Cropper
         src={serface ? serface : src}
         // Cropper.js options
-        initialAspectRatio={ratio}
-        aspectRatio={ratio}
-        guides={false}
-        zoomTo={zoomTo}
+        aspectRatio={1}
+
+        viewMode={1}
         crop={onCrop}
         ref={cropperRef}
         style={{width: `100%`, height: `100%`}}
@@ -39,4 +38,4 @@ const RectangleCropper= (props) => {
   );
 };
 
-export default RectangleCropper;
+export default RoundCropper;

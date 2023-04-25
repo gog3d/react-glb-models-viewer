@@ -24,7 +24,9 @@ export const CustomizationProvider = (props) => {
   );
 
   const [backgroundCrop, setBackgroundCrop] = useState(null);
+
   const [logoCrop, setLogoCrop] = useState(null);
+  const [logoImage, setLogoImage] = useState(null);
 
   return (
     <CustomizationContext.Provider
@@ -47,7 +49,10 @@ export const CustomizationProvider = (props) => {
         backgroundCrop,
         setBackgroundCrop,
         logoCrop,
-        setLogoCrop
+        setLogoCrop,
+        logoImage,
+        setLogoImage
+
       }}
       >
       {props.children}
