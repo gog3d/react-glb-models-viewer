@@ -19,11 +19,11 @@ const Cup = (props) => {
   } = useCustomization();
 
   const paperTextureProps = useTexture({
-    map: '/texture/paper/Paper_Wrinkled_001_basecolor.jpg',
+    map: '/react-glb-models-viewer/texture/paper/Paper_Wrinkled_001_basecolor.jpg',
   });
 
   const plasticTextureProps = useTexture({
-    map: '/texture/plastic/Plastic_Rough_001_basecolor.jpg',
+    map: '/react-glb-models-viewer/texture/plastic/Plastic_Rough_001_basecolor.jpg',
   });
 
   //const texture = useTexture('/texture/1.jpg');
@@ -36,7 +36,7 @@ const Cup = (props) => {
 
   plasticTextureProps.map.wrapS = plasticTextureProps.map.wrapT = THREE.RepeatWrapping;
 
-  const { nodes, materials } = useGLTF('/models/cup_1.glb')
+  const { nodes, materials } = useGLTF('/react-glb-models-viewer/models/cup_1.glb')
   
   return (
     <group {...props} dispose={null} position-y={-5.5}>
@@ -58,7 +58,7 @@ const Cup = (props) => {
   )
 }
 
-useGLTF.preload('/models/cup_1.glb');
+useGLTF.preload('/react-glb-models-viewer/models/cup_1.glb');
 //<primitive object={gltf.scene} />  material={materials.Material} <meshStandardMaterial />   <meshStandardMaterial {...plasticTextureProps}/>
 
 export default Cup;
