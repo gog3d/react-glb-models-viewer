@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
-import styles from './rectangle-cropper.module.css';
+import styles from './rectangle-cropper-2.module.css';
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
 import src from '../../media/1.jpg';
 
-const RectangleCropper= (props) => {
+const RectangleCropper2= (props) => {
 
   const {
     ratio,
@@ -67,9 +67,22 @@ const RectangleCropper= (props) => {
         crop={onCrop}
         ref={cropperRef}
         style={{width: `100%`, height: `100%`}}
+
+        dragMode ={'move'}
+        autoCropArea= {ratio}
+        restore={false}
+        center={false}
+        highlight={false}
+        cropBoxMovable={false}
+        cropBoxResizable={false}
+        toggleDragModeOnDblclick={false}
+
+
+
+
       />
 
   );
 };
 
-export default RectangleCropper;
+export default RectangleCropper2;

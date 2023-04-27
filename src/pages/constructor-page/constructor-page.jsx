@@ -4,6 +4,7 @@ import { useCustomization } from "../../context/customization";
 import { useState } from 'react';
 import ColorsPaletteColumn from '../../components/ui/colors-palette-column/colors-palette-column';
 import RectangleCropper from '../../components/rectangle-cropper/rectangle-cropper';
+import RectangleCropper2 from '../../components/rectangle-cropper-2/rectangle-cropper-2';
 import RoundCropper from '../../components/round-cropper/round-cropper';
 
 import { Canvas } from '@react-three/fiber';
@@ -38,6 +39,11 @@ const ConstructorPage = () => {
   const [logoZoom, setLogoZoom] = useState(0.5);
   const [logoCropZoom, setLogoCropZoom] = useState(null);
 
+  const [roundCropTrue, setRoundCropTrue] = useState(false);
+  const [oneSideTrue, setOneSideTrue] = useState(false);
+
+  //console.log(roundCropTrue)
+
   const {
     cup,
     setCup,
@@ -50,11 +56,18 @@ const ConstructorPage = () => {
     setMain,
     backgroundCrop,
     setBackgroundCrop,
-    logoCrop,
-    setLogoCrop,
+    logoCrop1,
+    setLogoCrop1,
     logoImage,
-    setLogoImage
+    setLogoImage,
+    logoImageRound,
+    setLogoImageRound,
+    main_2, 
+    setMain_2
   } = useCustomization();
+
+
+ // console.log(roundCropTrue);
 
   const colorClick = () => {
     if(menuColor) {
@@ -110,30 +123,49 @@ const ConstructorPage = () => {
     if(!e.target.files[0] && e.target.files.length === 0) {
       alert('inter file');
     } else {
-      setMain({...main, visible: true, image: URL.createObjectURL(e.target.files[0])});
+      setMain({...main, visible: false, image: URL.createObjectURL(e.target.files[0])});
     }
   };
 
   const addLogoImage = (e) => {
-    setFront({...front, visible: true, image: logoCrop});
-    setBack({...back, visible: true, image: logoCrop});
+  
+    if(!e.target.files[0] && e.target.files.length === 0) {
+      console.log('u')
+      alert('inter file');
+    } else {
+      setMain_2({...main, visible: false, image: URL.createObjectURL(e.target.files[0])});
+    }
   };
 
   const addBackground = () => {
     setMain({...main, visible: true, crop: backgroundCrop});
   };
 
+  const addLogo1 = () => {
+    if (roundCropTrue) {
+      setMain_2({...main_2, visible: true, crop: logoImageRound});
+    } else {
+      setMain_2({...main_2, visible: true, crop: logoImage});
+    }
+    logoImageClose();
+  };
+
+
   const addLogo = () => {
-    setFront({...front, visible: true, crop: logoCrop});
-    setBack({...back, visible: true, crop: logoCrop});
+    if (oneSideTrue) {
+      setFront({...front, visible: true, crop: logoCrop1});
+    } else {
+      setBack({...back, visible: true, crop: logoCrop1});
+      setFront({...front, visible: true, crop: logoCrop1});
+    }
   };
 
   const deleteBackground = () => {
     setMain({...main, visible: false, crop: null});
   };
   const deleteLogo = () => {
-    setFront({...front, visible: false, crop: logoCrop});
-    setBack({...back, visible: false, crop: logoCrop});
+    setFront({...front, visible: false, crop: logoCrop1});
+    setBack({...back, visible: false, crop: logoCrop1});
   };
 
   const backZoomUp = () => {
@@ -149,12 +181,32 @@ const ConstructorPage = () => {
     setLogoZoom(logoZoom - 0.01);
   };
 
-
+  const roundCrop = () => {
+    setRoundCropTrue(true);
+   /* const cr = document.getElementsByClassName('cropper-view-box');
+    const crF =document.getElementsByClassName('cropper-face');
+    crF.style.borderRadius='50%';
+    cr.style.borderRadius='50%';
+    console.log(cr)
+*/
+  }
+  const rectangleCrop =() => {
+    setRoundCropTrue(false);
+  }
+  const oneSide = () => {
+    setOneSideTrue(true);
+  }
+  const twoSide = () => {
+    setOneSideTrue(false);
+  }
+  
   return (
     <main className={styles['main']}>
       <section className={styles['main__model']}>
 {        <Canvas>
           <color attach='background' args={['#101010']}/>
+          <ambientLight intensity={1.8}/>
+          <spotLight intensity={0.8} position={[1, 100, 1]} />
           <Experience>
             <CupWrapper dimensions={[4, 2.6, 11.2]}/>
             <Cup/>
@@ -283,7 +335,7 @@ const ConstructorPage = () => {
               </label>
                 <div
                   className={styles['nav-menu__item']}
-                  onClick={logoImageClose}
+                  onClick={addLogo1}
                 >
                   Разместить
                 </div>
@@ -301,14 +353,41 @@ const ConstructorPage = () => {
               </button>
             </div>
             <div className={styles['crop-menu__controls_bottom']}>
+              <label 
+                  className={styles['add-file__label']}
+                  onClick={rectangleCrop}
+                >
+                <input 
+                  type="checkbox"
+                  checked={!roundCropTrue}
+                 
+                />
+                <span className={styles['add-file__span']}>
+                Квадратная
+                </span>
+              </label>
+              <label 
+                  className={styles['add-file__label']}
+                  onClick={roundCrop}
+                >
+                <input 
+                  type="checkbox"
+                 checked={roundCropTrue}
+                />
+                <span className={styles['add-file__span']}>
+                Круглая
+                </span>
+              </label>
             </div>
           </menu>
           <div className={styles['crop-menu__container']}>
             <RoundCropper 
               ratio={1}
-              serface={front.image}
+              serface={main_2.image}
               setSerface={setLogoImage}
+              setSerfaceRound={setLogoImageRound}
               zoomTo={logoZoom}
+              roundCrop={roundCropTrue}
             />
           </div>
         </div>
@@ -343,6 +422,37 @@ const ConstructorPage = () => {
               </button>
             </div>
             <div className={styles['crop-menu__controls_bottom']}>
+              <label 
+                  className={styles['add-file__label']}
+                  onClick={twoSide}
+                >
+                <input 
+                  type="checkbox"
+                  checked={!oneSideTrue}
+                 
+                />
+                <span className={styles['add-file__span']}>
+                Две стороны
+                </span>
+              </label>
+              <label 
+                  className={styles['add-file__label']}
+                  onClick={oneSide}
+                >
+                <input 
+                  type="checkbox"
+                 checked={oneSideTrue}
+                />
+                <span className={styles['add-file__span']}>
+                Одна сторона
+                </span>
+              </label>
+            </div>
+
+
+
+
+            <div className={styles['crop-menu__controls_bottom']}>
               <div
                 className={styles['nav-menu__item']}
                 onClick={deleteLogo}
@@ -353,11 +463,12 @@ const ConstructorPage = () => {
             </div>
           </menu>
           <div className={styles['crop-menu__container']}>
-            <RectangleCropper 
+            <RectangleCropper2 
               ratio={1}
-              serface={front.image}
-              setSerface={setLogoCrop}
-              zoomTo={logoZoom}
+              serface={main_2.crop}
+              setSerface={setLogoCrop1}
+              zoomTo={backZoom}
+              
             />
           </div>
         </div>

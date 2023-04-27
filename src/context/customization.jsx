@@ -22,11 +22,16 @@ export const CustomizationProvider = (props) => {
   const [back, setBack] = useState(
     {image: null, color: 'white', visible: false, crope: null}
   );
-
+  const [main_2, setMain_2] = useState(
+    {image: null, color: 'white', visible: false, crope: null}
+  );
   const [backgroundCrop, setBackgroundCrop] = useState(null);
 
   const [logoCrop, setLogoCrop] = useState(null);
+  const [logoCrop1, setLogoCrop1] = useState(null);
   const [logoImage, setLogoImage] = useState(null);
+  const [logoImageRound, setLogoImageRound] = useState(null);
+
 
   return (
     <CustomizationContext.Provider
@@ -50,9 +55,14 @@ export const CustomizationProvider = (props) => {
         setBackgroundCrop,
         logoCrop,
         setLogoCrop,
+        logoCrop1,
+        setLogoCrop1,
         logoImage,
-        setLogoImage
-
+        setLogoImage,
+        main_2, 
+        setMain_2,
+        logoImageRound,
+        setLogoImageRound
       }}
       >
       {props.children}
