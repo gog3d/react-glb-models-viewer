@@ -1,0 +1,30 @@
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.color__dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: solid 2px #999999
+}
+
+.color.color_active .color__dot {
+  border: solid 2px white;
+}
+
+.color {
+  transition: 0.4s opacity;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.color:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

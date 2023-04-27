@@ -1,0 +1,29 @@
+.dropmenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px
+}
+
+.dropmenu__values {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 0px 0px;
+}
+
+
+.dropmenu__title {
+  font-size: 12px;
+/*  font-weight: bold;*/
+/*  text-transform: uppercase;*/
+  color: #acacac;
+  transition: 0.4s color;
+}
+
+.dropmenu__title.dropmenu__title_active {
+  color: white;
+}
+
+.dropmenu__title:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  background-color: #000000;
+}
+
+.menu {
+  position: absolute;
+  top: 5vh;
+  width: 100%;
+/*  border: 1px solid red;*/
+  color: #acacac;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: end;
+  gap: 10%;
+  padding: 0 10vw;
+/*  border: 1px solid red;*/
+}
+
+.nav-menu__item:hover {
+  opacity: 0.8;
+  cursor: pointer;  
+}
+
+.nav-menu__item_active {
+  color: white;
+}
+
+.side-menu {
+  position: absolute;
+  top: 10vh;
+  color: white;
+/*  border: 1px solid red;*/
+}
+
+.side-menu_left {
+  left: 10vw;
+  dispaly: flex;
+  flex-direction: column;
+}
+
+.side-menu_right {
+  right: 10vw;
+}
+
+.crop-menu {
+  position: absolute;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.crop-menu__container {
+  height: 20vh;
+  width: 70vw;
+  border-radius: 2vh;
+  padding: 0vh;
+  overflow: hidden;
+  border: 1px solid white;
+}
+
+.crop-menu__controls {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  width: 25vw;
+
+}
+
+.crop-menu__controls_top {
+  display: flex;
+  flex-direction: column;
+  align-atems: center;
+  justify-content: center;
+  gap: 2vh;
+
+}
+
+.crop-menu__controls_bottom {
+  display: flex;
+  flex-direction: column;
+  align-atems: center;
+  justify-content: center;
+
+}
+
+.crop-menu__controls__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-beween;
+  gap: 2vh;
+}
+
+.crop-menu__button {
+  color: #000000;
+  width: 4vh;
+  height: 4vh;
+  border: 1px solid #ffffff;
+  background-color: grey;
+  border-radius: 1vh;
+  cursor: pointer;
+}
+
+.crop-menu__button:active {
+  box-shadow: 2px 2px 5px grey;
+}
+
+
+
+.main__model {
+  width: 100vw;
+  height: 100vh;
+}
+
+.add-file {
+
+}
+.add-file__input {
+  display: block;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  border: 1px solid green;
+  margin: 0;
+  padding: 0;
+}
+.add-file__label {
+  padding: 0px 3px 0px 3px;
+  margin: 0;
+}
+.add-file__span {
+  display: inline-block;
+}
+.crop-menu__controls_righ {
+  display: flex;
+  flex-direction: column;
+  align-aitems: top;
+  justify-content: space-between;
+  padding: 0px 0px 0px 20px;
+}
+.crop-menu__controls_left {
+  display: flex;
+  flex-direction: column;
+  align-aitems: top;
+  justify-content: top;
+  padding: 0px 20px 0px 0px;
+}
+
