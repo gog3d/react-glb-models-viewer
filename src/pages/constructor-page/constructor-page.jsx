@@ -467,7 +467,7 @@ const ConstructorPage = () => {
               ratio={1}
               serface={main_2.crop}
               setSerface={setLogoCrop1}
-              zoomTo={backZoom}
+              zoomTo={logoZoom}
               
             />
           </div>
